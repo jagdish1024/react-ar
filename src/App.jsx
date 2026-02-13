@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
 
-// src/App.jsx
-// src/App.jsx
-import ARCanvas from "./components/ARCanvas";
+import HomeUI from "./pages/HomeUI";
+import ARPage from "./pages/ARPage";
 
 export default function App() {
-  return <ARCanvas />;
+  return (
+    <Routes>
+      <Route path="/" element={<HomeUI />} />
+      <Route path="/ar" element={<ARPage />} />
+    </Routes>
+  );
 }
-
-
