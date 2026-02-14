@@ -1,14 +1,24 @@
 import { useGLTF } from "@react-three/drei";
+import { useEffect } from "react";
 
-export function SkeletonModel({ position, rotation }) {
-  const { scene } = useGLTF("/skeleton_pre-cut.glb");
+export function SkeletonModel({ modelPath, position, rotation, scale }) {
+  const { scene } = useGLTF(modelPath);
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+  }, [scene]);
 
   return (
     <primitive
       object={scene}
       position={position}
       rotation={rotation}
-      scale={0.4}
+      scale={scale}
     />
   );
 }
